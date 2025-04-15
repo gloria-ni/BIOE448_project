@@ -30,7 +30,7 @@ void setup() {
     Serial.println("Waiting for ArduinoBLE");
     while(1);
   }
-  BLE.setLocalName("Glo Project");
+  BLE.setLocalName("Gloria Project");
   //BLE.setAdvertisedServiceUuid("5189861260ABCDEF");
   BLE.setAdvertisedService(newService);
   newService.addCharacteristic(readChar);
@@ -51,11 +51,20 @@ void loop() {
   y = (Wire.read() | Wire.read() << 8); // Parse y values
   y = (Wire.read() | Wire.read() << 8); // Parse z values
 
-  if (x>80){
+  Serial.println(x);
+
+
+  if (x>900){
     steps = steps + 1;
     lcd.clear();
     lcd.print(String(steps) + " steps");
     delay(400); 
+  }
+
+  if(steps=10000){
+    lcd.clear();
+    lcd.print("Daily Goal Met!");
+    delay(5000);
   }
 
   BLEDevice central = BLE.central(); // wait for a BLE central
