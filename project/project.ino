@@ -61,7 +61,7 @@ void loop() {
     delay(400); 
   }
 
-  if(steps=10000){
+  if(steps==10000){
     lcd.clear();
     lcd.print("Daily Goal Met!");
     delay(5000);
